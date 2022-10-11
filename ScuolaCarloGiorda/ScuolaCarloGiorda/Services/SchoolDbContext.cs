@@ -28,7 +28,7 @@ public class SchoolDbContext : DbContext
             int port=dbUri.Port;
             string host=dbUri.Host;
             string dbname = dbUri.AbsolutePath.Substring(1);
-            connectionString = $"Host={host};Database={dbname};Username={username};Password={password};sslmode=require";
+            connectionString = $"Host={host};Database={dbname};Username={username};Password={password}";
         }
        
         optionsBuilder.UseNpgsql(connectionString);
