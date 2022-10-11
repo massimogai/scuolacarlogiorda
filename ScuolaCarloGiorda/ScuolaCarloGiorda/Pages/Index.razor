@@ -1,9 +1,43 @@
 @page "/"
-
+@using ScuolaCarloGiorda.Models
+@using ScuolaCarloGiorda.Services
+@inject CorsiService _corsiService
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+<button class="btn btn-primary" @onclick="@ShowAddCorsoForm"></button>
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (Corso corso in _corsi)
+    {
+        <tr>
+            <td>@corso.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+@code
+{
+    List<Corso> _corsi;
+    protected override void OnInitialized()
+    {
+        _corsi=_corsiService.ListCorsi();
+    }
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+    private void ShowAddCorsoForm()
+    {
+        Corso corso = new Corso
+        {
+            Name = "TEST_" + DateTime.Now
+        };
+        _corsiService.AddCorso(corso);
+        _corsi=_corsiService.ListCorsi();
+    }
+}

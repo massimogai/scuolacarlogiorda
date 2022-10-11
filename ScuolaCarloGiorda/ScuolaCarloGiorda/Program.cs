@@ -2,14 +2,22 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.HttpOverrides;
 using ScuolaCarloGiorda.Data;
+using ScuolaCarloGiorda.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
+
+
+builder.Services.AddSingleton<SchoolDbContext>();
+
+builder.Services.AddSingleton<CorsiService>();
+
+
+ 
 
 builder.Services.AddCors(options =>
 {
@@ -28,7 +36,8 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 
 
 var app = builder.Build();
-
+SchoolDbContext? context=(SchoolDbContext)app.Services.GetService(typeof(SchoolDbContext))!;
+context.Initialize();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
