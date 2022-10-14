@@ -7,6 +7,17 @@ namespace ScuolaCarloGiorda.Services;
 public class SchoolDbContext : DbContext
 {
     public DbSet<Corso> Corsi { get; set; }
+    public DbSet<Uscita> Uscite { get; set; }
+    public DbSet<Istruttore> Istruttori { get; set; }
+    public DbSet<Allievo> Allievi { get; set; }
+    public DbSet<Giudizio> Giudizi { get; set; }
+    public DbSet<GiudizioAR1> GiudizioAR1 { get; set; }
+    public DbSet<GiudizioAL1> GiudizioAL1 { get; set; }
+    public DbSet<GiudizioSA1> GiudizioSA1 { get; set; }
+    public DbSet<GiudizioSA2> GiudizioSA2 { get; set; }
+    public DbSet<GiudizioA1> GiudizioA1 { get; set; }
+    public DbSet<GiudizioAffiancato> GiudizioAffiancato { get; set; }
+    
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
