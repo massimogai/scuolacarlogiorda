@@ -1,16 +1,32 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ScuolaCarloGiorda.Models;
 
 public class Corso
 {
-    public string Name { get; set; }
+    [Required] public string Name { get; set; }
     public int CorsoId { get; set; }
-    public List<Allievo> Allievi { get; set; }
-    public List<Istruttore> Istruttori { get; set; }
-    public List<Uscita> Uscite { get; set; }
-    public TipoCorso TipoCorso { get; set; }
-    
+    public List<Allievo> Allievi { get; set; } = new List<Allievo>();
+    public List<Istruttore> Istruttori { get; set; } = new List<Istruttore>();
+    public List<Uscita> Uscite { get; set; } = new List<Uscita>();
+    public TipoCorso TipoCorso { get; set; } = TipoCorso.A1;
+    public PresenzeAllievi PresenzeAllievi { get; set; } = new PresenzeAllievi();
+    public PresenzeIstruttori PresenzeIstruttori { get; set; } = new PresenzeIstruttori();
+
 }
 
+public class PresenzeAllievi:Dictionary<Allievo,Uscita>
+{
+    
+    public int PresenzeAllieviId { get; set; }
+    
+}
+public class PresenzeIstruttori:Dictionary<Istruttore,Uscita>
+{
+    
+    public int PresenzeIstruttoriId { get; set; }
+    
+}
 public enum TipoCorso
 {
         AR1,SA1,SA2,A1,AL1
@@ -18,7 +34,7 @@ public enum TipoCorso
 public class Uscita
 {
     public int UscitaId { get; set; }
-    public List<Istruttore> Istruttori { get; set; }
+   
     public DateTime Data { get; set; }
     public string Luogo { get; set; }
     public int CorsoId { get; set; }
@@ -30,7 +46,8 @@ public class Istruttore
     public int IstruttoreId { get; set; }
     public string Nome { get; set; }
     public string Cognome { get; set; }
-
+    public string Cf { get; set; }
+    public string Mail { get; set; }
 }
 
 public class Allievo
@@ -39,7 +56,8 @@ public class Allievo
     public string Nome{ get; set; }
     public string Cognome{ get; set; }
     List<Giudizio> Giudizi{ get; set; }
-    
+    public string Cf { get; set; }
+    public string Mail { get; set; }
 }
 
 public class Giudizio

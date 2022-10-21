@@ -19,8 +19,36 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditAllievoPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0QWxsaWV2b1BvcHVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditCorsoPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0Q29yc29Qb3B1cC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditGiudizioSA1Popup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0R2l1ZGl6aW9TQTFQb3B1cC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditIstruttorePopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0SXN0cnV0dG9yZVBvcHVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditUscitePopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0VXNjaXRlUG9wdXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/ListSelector.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MaXN0U2VsZWN0b3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Pages/Instructors.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5zdHJ1Y3RvcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Shared/SurveyPrompt.razor]

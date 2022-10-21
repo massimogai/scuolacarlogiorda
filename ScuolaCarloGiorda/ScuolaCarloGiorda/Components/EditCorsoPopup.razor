@@ -1,5 +1,10 @@
 @using System.ComponentModel.DataAnnotations
 @using ScuolaCarloGiorda.Models
+@using ScuolaCarloGiorda.Services
+@inject CorsiService _corsiService
+@inject AllieviService _allieviService
+@inject IstruttoriService _istruttoriService
+
 <EditForm Model="@Corso" OnValidSubmit="@(SaveForm)">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
@@ -10,11 +15,58 @@
                     <h3 class="modal-title">Anagrafica Istruttore</h3>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>Nome:</label>
-                        <InputText class="form-control" @bind-Value="Corso.Name"/>
-                    </div>
-                    
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="@_cssGeneral" @onclick="@(ShowGeneral)">Generale</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="@_cssInstructors" @onclick="@(ShowInstructors)">Istruttori</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="@_cssStudents" @onclick="@(ShowStudents)">Allievi</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="@_cssTrips" @onclick="@(ShowTrips)">Uscite</a>
+                        </li>
+
+                    </ul>
+                    @if (_showGeneral)
+                    {
+                        <div class="form-group">
+                            <label>Nome:</label>
+                            <InputText class="form-control" @bind-Value="Corso.Name"/>
+                        </div>
+                    }
+                    @if (_showInstructors)
+                    {
+                        <ListSelector TItem="Istruttore" LabelProperty="istruttore => istruttore.Nome" Items="@_instructors" Value="Corso.Istruttori" ValueChanged="OnInstructorsListChanged"></ListSelector>
+                     
+                    }
+                    @if (_showStudents)
+                    {
+                        <InputFile OnChange="@LoadFiles" multiple/>
+                        <table>
+                            <thead></thead>
+                            <tbody>
+                            @foreach (Allievo allievo in Corso.Allievi)
+                            {
+                            }
+                            </tbody>
+                        </table>
+                    }
+                    @if (_showTrips)
+                    {
+                        <table>
+                            <thead></thead>
+                            <tbody>
+                            @foreach (Uscita uscita in Corso.Uscite)
+                            {
+                            }
+                            </tbody>
+                        </table>
+                    }
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary fas fa-save" data-dismiss="modal">Salva</button>
@@ -24,6 +76,8 @@
         </div>
     </div>
 </EditForm>
+
+
 
 @code
 {
@@ -37,20 +91,104 @@
     public Corso Corso { get; set; }
 
 
+    private bool _showGeneral;
+    private bool _showInstructors;
+    private bool _showStudents;
+    private bool _showTrips;
+
+    private string _cssGeneral;
+    private string _cssInstructors;
+    private string _cssStudents;
+    private string _cssTrips;
+    private List<Allievo> _students;
+    private List<Istruttore> _instructors;
+    private List<Istruttore> _selectedInstructors;
+
     protected override void OnInitialized()
     {
+        _instructors = _istruttoriService.ListIstruttori();
+        ResetFlagsAndCss();
+        ShowGeneral();
     }
 
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        foreach (IBrowserFile file in e.GetMultipleFiles(1))
+        {
+            try
+            {
+                Stream stream = file.OpenReadStream();
+               _students =  await _allieviService.LoadFromStream(stream);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
 
     private void CloseForm()
     {
+        _corsiService.DiscardChanges(Corso);
         Close?.Invoke();
     }
 
     private void SaveForm()
     {
+        _corsiService.AddOrUpdate(Corso);
         Save?.Invoke();
     }
 
+    private void ResetFlagsAndCss()
+    {
+        _showGeneral = false;
+        _showInstructors = false;
+        _showStudents = false;
+        _showTrips = false;
 
+        _cssGeneral = "nav-link";
+        _cssInstructors = "nav-link";
+        _cssStudents = "nav-link";
+        _cssTrips = "nav-link";
+    }
+
+    private void ShowGeneral()
+    {
+        ResetFlagsAndCss();
+
+        _showGeneral = true;
+        _cssGeneral = "nav-link active";
+    }
+
+    private void ShowInstructors()
+    {
+        ResetFlagsAndCss();
+
+        _showInstructors = true;
+        _cssInstructors = "nav-link active";
+    }
+
+    private void ShowStudents()
+    {
+        ResetFlagsAndCss();
+
+        _showStudents = true;
+        _cssStudents = "nav-link active";
+    }
+
+    private void ShowTrips()
+    {
+        ResetFlagsAndCss();
+
+        _showTrips = true;
+        _cssTrips = "nav-link active";
+    }
+
+
+    private void OnInstructorsListChanged()
+    {
+      
+    }
+
+  
 }

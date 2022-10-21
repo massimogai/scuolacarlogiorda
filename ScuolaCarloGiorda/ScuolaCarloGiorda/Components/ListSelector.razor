@@ -1,0 +1,230 @@
+@using ScuolaCarloGiorda.Services
+@typeparam TItem
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                @foreach (var item in _notSelectedResult.result)
+                {
+                    <li @onclick="@(() => Select(item))">@LabelProperty.Invoke(item)</li>
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            @if (_notSelectedResult != null && _notSelectedResult.pages > 1)
+            {
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <button type="button" @onclick="@(NotSelectedPrevPage)" title="Precedente" class="page-link btn fas fa-angle-double-left"></button>
+                        </li>
+                        @for (var pageCounter = _notSelectedStart; pageCounter <= _notSelectedFinish; pageCounter++)
+                        {
+                            var i = pageCounter;
+                            var pageIndex = pageCounter - 1;
+                            var disabled = pageIndex == _notSelectedResult.index;
+                            var licss = "page-item";
+                            if (disabled)
+                            {
+                                licss = "page-item disabled";
+                            }
+                            <li class="@licss">
+                                <button type="button" class="page-link shadow-none" @onclick="@(() => NotSelectedSelectPage(pageIndex))">@i\@_notSelectedResult.pages</button>
+                            </li>
+                        }
+                        <li class="page-item">
+                            <button type="button" @onclick="@(NotSelectedNextPage)" title="Successivo" class="page-link btn fas fa-angle-double-right"></button>
+                        </li>
+                    </ul>
+                </nav>
+            }
+        </div>
+    </div>
+
+
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                @foreach (var item in _selected)
+                {
+                    <li @onclick="@(() => Deselect(item))">@LabelProperty.Invoke(item)</li>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="multiple-selector-buttons">
+    <button type="button" @onclick="SelectAll">>></button>
+    <button type="button" @onclick="DeselectAll">@_removeAllText</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<TItem> Items { get; set; } = new();
+
+    [Parameter]
+    public Func<TItem, string> LabelProperty { get; set; }
+
+   
+    [Parameter]
+    public List<TItem> Value { get; set; }
+
+    [Parameter]
+    public EventCallback<List<TItem>> ValueChanged { get; set; }
+
+    private string _removeAllText = "<<";
+
+    private List<TItem> _noSelected = new();
+    private List<TItem> _selected = new();
+    private GenericResultModel<TItem> _notSelectedResult;
+    private int _notSelectedPageNumber = 1;
+    private int _notSelectedStart;
+    private int _notSelectedFinish;
+    private int _notSelectedVisiblePages = 5;
+    private int _notSelectedPageCount;
+        private const int ItemPerPage = 10;
+
+    protected override void OnInitialized()
+    {
+        _selected.Clear();
+        _noSelected.Clear();
+        foreach (var item in Items)
+        {
+          
+            if (Value.Contains(item))
+            {
+                _selected.Add(item);
+            }
+        }
+        _noSelected = Items.Except(_selected).ToList();
+
+        LoadData(0);
+        EvaluatePagesLimit();
+    }
+
+    private void OrderData()
+    {
+        _noSelected = _noSelected.OrderBy(LabelProperty).ToList();
+        _selected = _selected.OrderBy(LabelProperty).ToList();
+    }
+
+
+    private async Task Select(TItem item)
+    {
+        _noSelected.Remove(item);
+        _selected.Add(item);
+
+        Value.Add(item);
+        await ValueChanged.InvokeAsync(Value);
+        NotSelectedSelectPage(_notSelectedResult.index);
+    }
+
+    private async Task Deselect(TItem item)
+    {
+        _selected.Remove(item);
+        _noSelected.Add(item);
+
+        Value.Remove((item));
+        await ValueChanged.InvokeAsync(Value);
+        NotSelectedSelectPage(_notSelectedResult.index);
+    }
+
+    private async Task SelectAll()
+    {
+        _selected.AddRange(_noSelected);
+        _noSelected.ForEach(item => Value.Add((item)));
+        await ValueChanged.InvokeAsync(Value);
+        _noSelected.Clear();
+        LoadData(0);
+        EvaluatePagesLimit();
+    }
+
+    private async Task DeselectAll()
+    {
+        _noSelected.AddRange(_selected);
+        _selected.Clear();
+        Value.Clear();
+        await ValueChanged.InvokeAsync(Value);
+        LoadData(0);
+        EvaluatePagesLimit();
+    }
+
+
+    private void NotSelectedPrevPage()
+    {
+        var currentPageIndex = _notSelectedResult.index;
+        if (currentPageIndex > 0)
+        {
+            _notSelectedPageNumber = _notSelectedPageNumber - 1;
+            var prevPageIndex = currentPageIndex - 1;
+            LoadData(prevPageIndex);
+            EvaluatePagesLimit();
+        }
+    }
+
+    private void NotSelectedNextPage()
+    {
+        var currentPageIndex = _notSelectedResult.index;
+        if (currentPageIndex < _notSelectedResult.pages - 1)
+        {
+            _notSelectedPageNumber = _notSelectedPageNumber + 1;
+            var nextPageIndex = currentPageIndex + 1;
+            LoadData(nextPageIndex);
+            EvaluatePagesLimit();
+        }
+    }
+
+    private void NotSelectedSelectPage(int pageIndex)
+    {
+        if (pageIndex > -1 && pageIndex < _notSelectedResult.pages)
+        {
+            _notSelectedPageNumber = pageIndex + 1;
+            LoadData(pageIndex);
+            EvaluatePagesLimit();
+        }
+    }
+
+    private void EvaluatePagesLimit()
+    {
+        _notSelectedPageCount = _notSelectedResult.pages;
+        var currentPage = _notSelectedResult.index + 1;
+        _notSelectedVisiblePages = 5;
+        _notSelectedVisiblePages = Math.Min(_notSelectedVisiblePages, _notSelectedPageCount);
+        var half = (int)Math.Floor(_notSelectedVisiblePages / 2d);
+        _notSelectedStart = Math.Max(currentPage - half, 1);
+        _notSelectedFinish = Math.Min(currentPage + half, _notSelectedPageCount);
+
+        if (_notSelectedStart == 1)
+        {
+            _notSelectedFinish = _notSelectedVisiblePages;
+        }
+        if (_notSelectedFinish > _notSelectedPageCount)
+        {
+            _notSelectedStart = _notSelectedPageCount - _notSelectedVisiblePages;
+        }
+    }
+
+    private void LoadData(int index)
+    {
+        OrderData();
+        var pages = (int)Math.Ceiling((double)_noSelected.Count / ItemPerPage);
+        if (pages == 0)
+        {
+            index = 0;
+        }
+        else if (index > pages - 1)
+        {
+            index = pages - 1;
+        }
+
+        var values = _noSelected.Skip(index * ItemPerPage).Take(ItemPerPage).ToList();
+        _notSelectedResult = new GenericResultModel<TItem>();
+        _notSelectedResult.index = index;
+        _notSelectedResult.pages = pages;
+        _notSelectedResult.result = values;
+        _notSelectedResult.total = _noSelected.Count;
+    }
+
+}
