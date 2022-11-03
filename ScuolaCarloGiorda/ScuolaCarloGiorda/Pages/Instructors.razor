@@ -1,0 +1,45 @@
+@page "/instructors"
+@using ScuolaCarloGiorda.Models
+@using ScuolaCarloGiorda.Services
+@inject IstruttoriService _istruttoriService
+<InputFile OnChange="@LoadFiles" multiple/>
+<table>
+    <thead>
+    <th>Nome</th>
+    </thead>
+    <tbody>
+    @foreach (Istruttore istruttore in _instructors)
+    {
+        <tr>
+            <td>@istruttore.Nome</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        _instructors = _istruttoriService.ListIstruttori();
+    }
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        foreach (IBrowserFile file in e.GetMultipleFiles(1))
+        {
+            try
+            {
+                Stream stream = file.OpenReadStream();
+               await _istruttoriService.LoadFromStream(stream);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        _instructors = _istruttoriService.ListIstruttori();
+    }
+
+    private List<Istruttore> _instructors;
+}

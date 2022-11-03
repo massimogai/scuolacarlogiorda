@@ -19,11 +19,17 @@ public class CorsiService
         return corsi;
     }
 
-    public void AddCorso(Corso corso)
+    public void AddOrUpdate(Corso corso)
     {
-        
-        _schoolDbContext.Corsi.Add(corso);
+
+        var cursor=_schoolDbContext.Corsi.Where(corso1 => corso1.CorsoId == corso.CorsoId);
+        int num=cursor.Count();
+        if (num==0)
+        {_schoolDbContext.Corsi.Add(corso);}
         _schoolDbContext.SaveChanges();
     }
-
+    public void DiscardChanges(Corso corso)
+    {
+        _schoolDbContext.Entry(corso).Reload();
+    }
 }

@@ -1,13 +1,31 @@
+using System.Data.Entity;
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
 using ScuolaCarloGiorda.Models;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace ScuolaCarloGiorda.Services;
 
 public class SchoolDbContext : DbContext
 {
-    public DbSet<Corso> Corsi { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Corso> Corsi { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Uscita> Uscite { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Istruttore> Istruttori { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Allievo> Allievi { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<Giudizio> Giudizi { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<GiudizioAR1> GiudizioAR1 { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<GiudizioAL1> GiudizioAL1 { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<GiudizioSA1> GiudizioSA1 { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<GiudizioSA2> GiudizioSA2 { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<GiudizioA1> GiudizioA1 { get; set; }
+    public Microsoft.EntityFrameworkCore.DbSet<GiudizioAffiancato> GiudizioAffiancato { get; set; }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        
+    }
+
+   
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

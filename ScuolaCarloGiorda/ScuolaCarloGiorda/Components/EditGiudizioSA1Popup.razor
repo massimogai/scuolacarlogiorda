@@ -1,0 +1,56 @@
+@using System.ComponentModel.DataAnnotations
+@using ScuolaCarloGiorda.Models
+<EditForm Model="@GiudizioSa1" OnValidSubmit="@(SaveForm)">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="modal" role="dialog" style="display:block; overflow: auto" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Anagrafica Istruttore</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <InputDate class="form-control" @bind-Value="GiudizioSa1.Data"/>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary fas fa-save" data-dismiss="modal">Salva</button>
+                    <button type="button" @onclick="@(CloseForm)" class="btn btn-primary fas fa-close" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public Action Save { get; set; }
+
+    [Parameter]
+    public Action Close { get; set; }
+
+    [Parameter]
+    public GiudizioSA1 GiudizioSa1 { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+    }
+
+
+    private void CloseForm()
+    {
+        Close?.Invoke();
+    }
+
+    private void SaveForm()
+    {
+        Save?.Invoke();
+    }
+
+
+}
