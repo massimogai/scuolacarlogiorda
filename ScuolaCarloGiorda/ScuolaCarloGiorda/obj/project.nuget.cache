@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0XmpKjTgiFJKojY7BnOa9y1c8xIwUGd5rVGa6p0/WgNxdtM8NFq1GpMNUtbHZXbIZAO3smcL+rWWmZUaDJlTJA==",
+  "dgSpecHash": "BdV0DdBZETh+zX9V9CHozJZd1p38CoNMOA7k/KQVDAqNXIZgTSx3qaMcUyNnvumGHgmJGc+V1lwlmkmLpkN5kQ==",
   "success": true,
-  "projectFilePath": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
+  "projectFilePath": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
   "expectedPackageFiles": [
     "/home/massimo/.nuget/packages/microsoft.entityframeworkcore/6.0.9/microsoft.entityframeworkcore.6.0.9.nupkg.sha512",
     "/home/massimo/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.9/microsoft.entityframeworkcore.abstractions.6.0.9.nupkg.sha512",
