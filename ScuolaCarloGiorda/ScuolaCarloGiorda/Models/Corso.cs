@@ -15,13 +15,13 @@ public class Corso
 
 }
 
-public class PresenzeAllievi:Dictionary<Allievo,Uscita>
+public class PresenzeAllievi:Dictionary<(Allievo,Uscita),string>
 {
     
     public int PresenzeAllieviId { get; set; }
     
 }
-public class PresenzeIstruttori:Dictionary<Istruttore,Uscita>
+public class PresenzeIstruttori:Dictionary<(Istruttore,Uscita),string>
 {
     
     public int PresenzeIstruttoriId { get; set; }

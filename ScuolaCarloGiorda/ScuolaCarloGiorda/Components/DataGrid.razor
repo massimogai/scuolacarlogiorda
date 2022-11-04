@@ -1,0 +1,46 @@
+@typeparam TColumn
+@typeparam TRow
+
+<table>
+    <thead>
+    <th></th>
+    @foreach (var column in Columns)
+    {
+        <th>@ColumnProperty.Invoke(column)</th>
+    }
+    </thead>
+    <tbody>
+    @foreach (var row in Rows)
+    {
+        <tr>
+        <td>@RowProperty.Invoke(row)</td>
+        @foreach (var column in Columns)
+        {
+            <td>
+                <InputText @bind-Value="Data[(row,column)]"></InputText>
+            </td>
+        }
+    </tr>
+    }
+    </tbody>
+</table>
+
+@code
+{
+    [Parameter]
+    public Dictionary<(TRow, TColumn), string> Data { get; set; }
+    [Parameter]
+    public List<TRow> Rows { get; set; }
+    [Parameter]
+    public List<TColumn> Columns { get; set; }
+    [Parameter]
+    public Func<TColumn, string> ColumnProperty { get; set; }
+    [Parameter]
+    public Func<TRow, string> RowProperty { get; set; }
+     
+
+    protected override void OnInitialized()
+    {
+    }
+ 
+}

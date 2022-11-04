@@ -19,6 +19,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/DataGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9EYXRhR3JpZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditAllievoPopup.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0QWxsaWV2b1BvcHVwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

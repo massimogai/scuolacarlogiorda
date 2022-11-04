@@ -21,10 +21,10 @@
                             <a class="@_cssGeneral" @onclick="@(ShowGeneral)">Generale</a>
                         </li>
                         <li class="nav-item">
-                            <a class="@_cssInstructors" @onclick="@(ShowInstructors)">Istruttori</a>
+                            <a class="@_cssInstructors" @onclick="@(ShowInstructors)">Presenze Istruttori</a>
                         </li>
                         <li class="nav-item">
-                            <a class="@_cssStudents" @onclick="@(ShowStudents)">Allievi</a>
+                            <a class="@_cssStudents" @onclick="@(ShowStudents)">Allievi e presenze</a>
                         </li>
 
                         <li class="nav-item">
@@ -37,6 +37,16 @@
                         <div class="form-group">
                             <label>Nome:</label>
                             <InputText class="form-control" @bind-Value="Corso.Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>>Tipo Corso:</label>
+                            <InputSelect class="form-control" @bind-Value="Corso.TipoCorso">
+                                <option value="@TipoCorso.A1">A1</option>
+                                <option value="@TipoCorso.AL1">AL1</option>
+                                <option value="@TipoCorso.AR1">AR1</option>
+                                <option value="@TipoCorso.SA1">SA1</option>
+                                    <option value="@TipoCorso.SA2">SA2</option>
+                            </InputSelect>
                         </div>
                     }
                     @if (_showInstructors)
