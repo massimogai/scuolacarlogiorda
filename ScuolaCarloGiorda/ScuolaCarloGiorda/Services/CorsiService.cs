@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ScuolaCarloGiorda.Models;
 
 namespace ScuolaCarloGiorda.Services;
@@ -14,7 +15,7 @@ public class CorsiService
 
     public List<Corso> ListCorsi()
     {
-        var corsi = _schoolDbContext.Corsi
+        var corsi = _schoolDbContext.Corsi.Include(corso =>corso.Uscite )
             .ToList();
         return corsi;
     }

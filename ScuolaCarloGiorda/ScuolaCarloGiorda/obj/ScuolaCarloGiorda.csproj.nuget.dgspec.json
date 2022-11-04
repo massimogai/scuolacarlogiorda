@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj": {}
+    "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj": {}
   },
   "projects": {
-    "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj": {
+    "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
+        "projectUniqueName": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
         "projectName": "ScuolaCarloGiorda",
-        "projectPath": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
+        "projectPath": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
         "packagesPath": "/home/massimo/.nuget/packages/",
-        "outputPath": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/",
+        "outputPath": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/massimo/.nuget/NuGet/NuGet.Config"
@@ -61,8 +61,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -74,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -8,25 +8,25 @@ public class Corso
     public int CorsoId { get; set; }
     public List<Allievo> Allievi { get; set; } = new List<Allievo>();
     public List<Istruttore> Istruttori { get; set; } = new List<Istruttore>();
-    public List<Uscita> Uscite { get; set; } = new List<Uscita>();
+    public  List<Uscita> Uscite { get; set; } = new List<Uscita>();
     public TipoCorso TipoCorso { get; set; } = TipoCorso.A1;
     public PresenzeAllievi PresenzeAllievi { get; set; } = new PresenzeAllievi();
     public PresenzeIstruttori PresenzeIstruttori { get; set; } = new PresenzeIstruttori();
 
 }
 
-public class PresenzeAllievi:Dictionary<(Allievo,Uscita),string>
-{
+ public class PresenzeAllievi:Dictionary<(Allievo,Uscita),string>
+ {
     
     public int PresenzeAllieviId { get; set; }
+     
+ }
+ public class PresenzeIstruttori:Dictionary<(Istruttore,Uscita),string>
+ {
     
-}
-public class PresenzeIstruttori:Dictionary<(Istruttore,Uscita),string>
-{
-    
-    public int PresenzeIstruttoriId { get; set; }
-    
-}
+   public int PresenzeIstruttoriId { get; set; }
+  
+ }
 public enum TipoCorso
 {
         AR1,SA1,SA2,A1,AL1
@@ -36,8 +36,8 @@ public class Uscita
     public int UscitaId { get; set; }
    
     public DateTime Data { get; set; }
-    public string Luogo { get; set; }
-    public int CorsoId { get; set; }
+    [Required] public string Luogo { get; set; }
+    public  Corso Corso{ get; set; }
     
 }
 

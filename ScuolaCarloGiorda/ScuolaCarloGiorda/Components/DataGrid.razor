@@ -17,7 +17,7 @@
         @foreach (var column in Columns)
         {
             <td>
-                <InputText @bind-Value="Data[(row,column)]"></InputText>
+                <InputText @bind-Value="Data[new Tuple<TRow, TColumn>(row,column)]"></InputText>
             </td>
         }
     </tr>
@@ -28,7 +28,7 @@
 @code
 {
     [Parameter]
-    public Dictionary<(TRow, TColumn), string> Data { get; set; }
+    public Dictionary<Tuple<TRow, TColumn>, string> Data { get; set; }
     [Parameter]
     public List<TRow> Rows { get; set; }
     [Parameter]

@@ -1,0 +1,84 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ScuolaCarloGiorda
+build_property.RootNamespace = ScuolaCarloGiorda
+build_property.ProjectDir = /progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda
+build_property._RazorSourceGeneratorDebug = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/DataGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9EYXRhR3JpZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditAllievoPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0QWxsaWV2b1BvcHVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditCorsoPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0Q29yc29Qb3B1cC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditGiudizioSA1Popup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0R2l1ZGl6aW9TQTFQb3B1cC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditIstruttorePopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0SXN0cnV0dG9yZVBvcHVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/EditUscitePopup.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9FZGl0VXNjaXRlUG9wdXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Components/ListSelector.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MaXN0U2VsZWN0b3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Pages/Instructors.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5zdHJ1Y3RvcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-u2ofsjazys
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-51r1deevy6
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

@@ -10,17 +10,30 @@ public class UsciteService
     {
         _schoolDbContext = schoolDbContext;
     }
-    public List<Uscita> ListUscite()
+   
+    public void DiscardChanges(Uscita uscita)
     {
-        var corsi = _schoolDbContext.Uscite
-            .ToList();
-        return corsi;
+        _schoolDbContext.Entry(uscita).Reload();
     }
-
-    public void AddUscita(Uscita uscita)
+    public void AddOrUpdateUscita(Uscita uscita)
     {
         
-        _schoolDbContext.Uscite.Add(uscita);
+        
+        var cursor = _schoolDbContext.Uscite.Where(uscita1 => uscita1.UscitaId == uscita.UscitaId);
+        int num = cursor.Count();
+        if (num == 0)
+        {
+            _schoolDbContext.Uscite.Add(uscita);
+        }
+        else
+        {
+            Uscita uscitadb = cursor.First();
+            uscitadb.Luogo = uscita.Luogo;
+            
+           
+        }
         _schoolDbContext.SaveChanges();
+      
+      
     }
 }

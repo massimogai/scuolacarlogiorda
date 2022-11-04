@@ -33,7 +33,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownNetworks.Clear();
     options.KnownProxies.Clear();
 });
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var app = builder.Build();
 SchoolDbContext? context = (SchoolDbContext) app.Services.GetService(typeof(SchoolDbContext))!;
