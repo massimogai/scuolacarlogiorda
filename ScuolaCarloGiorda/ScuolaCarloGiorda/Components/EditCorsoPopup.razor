@@ -21,10 +21,10 @@
                             <a class="@_cssGeneral" @onclick="@(ShowGeneral)">Generale</a>
                         </li>
                         <li class="nav-item">
-                            <a class="@_cssInstructors" @onclick="@(ShowInstructors)">Presenze Istruttori</a>
+                            <a class="@_cssInstructors" @onclick="@(ShowInstructors)">Elenco Istruttori</a>
                         </li>
                         <li class="nav-item">
-                            <a class="@_cssStudents" @onclick="@(ShowStudents)">Allievi e presenze</a>
+                            <a class="@_cssStudents" @onclick="@(ShowStudents)">Elenco Allievi</a>
                         </li>
 
                         <li class="nav-item">
@@ -62,7 +62,7 @@
                     }
                     @if (_showStudents)
                     {
-                        <InputFile OnChange="@LoadFiles" multiple/>
+                        <InputFile OnChange="@LoadFiles"/>
                         <table>
                             <thead>
                             <th>Cognome</th>
@@ -156,6 +156,7 @@
     protected override void OnInitialized()
     {
         _instructors = _istruttoriService.ListIstruttori();
+        _students = _allieviService.ListAllievi();
         ResetFlagsAndCss();
         ShowGeneral();
     }

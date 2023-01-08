@@ -4,14 +4,17 @@
 @inject CorsiService _corsiService
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
-<button class="btn btn-primary" @onclick="@ShowAddCorsoForm">Crea Corso</button>
-<table>
+<table class="table table-bordered">
     <thead>
     <tr>
+        <th colspan="2">
+            <button class="btn btn-primary" @onclick="@ShowAddCorsoForm">Crea Corso</button>
+        </th>
+    </tr>
+    <tr>
         <th>Nome</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -19,49 +22,49 @@ Welcome to your new app.
     {
         <tr>
             <td>@corso.Name</td>
-            <td><button class="btn btn-primary oi-plus" @onclick="@(()=>SelectCorso(corso))"></button></td>
+            <td>
+                <button class="btn btn-primary oi oi-pencil" title="modifica" @onclick="@(() => SelectCorso(corso))"></button>
+            </td>
         </tr>
     }
     </tbody>
 </table>
 @if (_selectedCorso != null)
 {
-    
     <EditCorsoPopup Corso="@_selectedCorso" Save="@OnSave" Close="@OnCancel"></EditCorsoPopup>
-  
 }
+
 @code
 {
     List<Corso>? _corsi;
     Corso? _selectedCorso;
-    
+
     protected override void OnInitialized()
     {
-      
-        _corsi=_corsiService.ListCorsi();
+        _corsi = _corsiService.ListCorsi();
     }
 
     private void ShowAddCorsoForm()
     {
-      
         Corso corso = new Corso
         {
             Name = "TEST_" + DateTime.Now
         };
         _selectedCorso = corso;
-        
     }
 
     private void SelectCorso(Corso corso)
     {
         _selectedCorso = corso;
     }
+
     private void OnSave()
     {
         _selectedCorso = null;
-        _corsi=_corsiService.ListCorsi();
+        _corsi = _corsiService.ListCorsi();
         StateHasChanged();
     }
+
     private void OnCancel()
     {
         _selectedCorso = null;

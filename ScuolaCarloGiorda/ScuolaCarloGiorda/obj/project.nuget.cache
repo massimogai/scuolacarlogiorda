@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cRpoacTuuTqR57I99m5P1aAJqamLLOTnfjT02ZM+lIjP/h403GmGTRbxyn4uF9bF2bmhGorAnAcKye/HDA4REw==",
+  "dgSpecHash": "9ImezFtnxex3Bb0G9lxawlZglXR8tDOhHOFm51VGePXgTiBBW4pgxrBDtXw8YQvVQNu6dtkMFiClwD5gZC4zgA==",
   "success": true,
-  "projectFilePath": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
+  "projectFilePath": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/ScuolaCarloGiorda.csproj",
   "expectedPackageFiles": [
     "/home/massimo/.nuget/packages/dotnetcore.npoi/1.2.3/dotnetcore.npoi.1.2.3.nupkg.sha512",
     "/home/massimo/.nuget/packages/dotnetcore.npoi.core/1.2.3/dotnetcore.npoi.core.1.2.3.nupkg.sha512",
