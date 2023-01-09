@@ -2,6 +2,23 @@
 @using ScuolaCarloGiorda.Models
 @using ScuolaCarloGiorda.Services
 @inject IstruttoriService _istruttoriService
+<<<<<<< HEAD
+=======
+<InputFile OnChange="@LoadFiles"/>
+<table class="table-bordered table">
+    <thead>
+    <th>Nome</th>
+    </thead>
+    <tbody>
+    @foreach (Istruttore istruttore in _instructors)
+    {
+        <tr>
+            <td>@istruttore.Nome</td>
+        </tr>
+    }
+    </tbody>
+</table>
+>>>>>>> 97b7b2d58a7203322c70f607fa2337613870a70f
 
 <div class="row">
     <div class="form-group">

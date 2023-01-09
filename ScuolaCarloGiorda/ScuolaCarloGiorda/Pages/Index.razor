@@ -7,13 +7,22 @@
 
 <PageTitle>Index</PageTitle>
 
+<<<<<<< HEAD
 <h1>Scuola Carlo Giorda.</h1>
+=======
+>>>>>>> 97b7b2d58a7203322c70f607fa2337613870a70f
 
 <table class="table table-bordered">
     <thead>
     <tr><th><button class="btn btn-primary oi oi-plus " @onclick="@ShowAddCorsoForm" title="Crea Corso"></button></th></tr>
     <tr>
+        <th colspan="2">
+            <button class="btn btn-primary" @onclick="@ShowAddCorsoForm">Crea Corso</button>
+        </th>
+    </tr>
+    <tr>
         <th>Nome</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -22,19 +31,34 @@
         <tr>
             <td>@corso.Name</td>
             <td>
+<<<<<<< HEAD
                 <button class="btn btn-primary oi oi-pencil" @onclick="@(() => SelectCorso(corso))" title="Modifica Corso"></button>
                 <button class="btn btn-primary oi oi-delete" @onclick="@(() => DeleteCorso(corso))" title="Elimina Corso"></button>
                 <button class="btn btn-primary oi oi-check" @onclick="@(() => CloseCorso(corso))" title="Chiudi Corso"></button>
+=======
+                <button class="btn btn-primary oi oi-pencil" title="modifica" @onclick="@(() => SelectCorso(corso))"></button>
+>>>>>>> 97b7b2d58a7203322c70f607fa2337613870a70f
             </td>
         </tr>
     }
     </tbody>
 </table>
+<<<<<<< HEAD
+=======
+@if (_selectedCorso != null)
+{
+    <EditCorsoPopup Corso="@_selectedCorso" Save="@OnSave" Close="@OnCancel"></EditCorsoPopup>
+}
+>>>>>>> 97b7b2d58a7203322c70f607fa2337613870a70f
 
 @code
 {
     List<Corso>? _corsi;
+<<<<<<< HEAD
 
+=======
+    Corso? _selectedCorso;
+>>>>>>> 97b7b2d58a7203322c70f607fa2337613870a70f
 
     protected override void OnInitialized()
     {
@@ -47,8 +71,12 @@
         {
             Name = "TEST_" + DateTime.Now
         };
+<<<<<<< HEAD
 
         _sessionDataHolder.Corso = corso;
+=======
+        _selectedCorso = corso;
+>>>>>>> 97b7b2d58a7203322c70f607fa2337613870a70f
     }
 
     private void SelectCorso(Corso corso)
@@ -57,12 +85,23 @@
         _navManager.NavigateTo("/corso");
     }
 
+<<<<<<< HEAD
     private void DeleteCorso(Corso corso)
     {
         throw new NotImplementedException();
     }
 
     private void CloseCorso(Corso corso)
+=======
+    private void OnSave()
+    {
+        _selectedCorso = null;
+        _corsi = _corsiService.ListCorsi();
+        StateHasChanged();
+    }
+
+    private void OnCancel()
+>>>>>>> 97b7b2d58a7203322c70f607fa2337613870a70f
     {
         throw new NotImplementedException();
     }

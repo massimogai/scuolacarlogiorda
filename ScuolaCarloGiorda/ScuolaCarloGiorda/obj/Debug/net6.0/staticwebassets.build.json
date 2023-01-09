@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QWNsHPC1DSXMVzCfZbRllU6W7IfAd77jMfSE+5veekE=",
+  "Hash": "W87YeFHgAM2ZXXlpftXXI36vBp21kz5Q3YrqQC4lu4o=",
   "Source": "ScuolaCarloGiorda",
   "BasePath": "_content/ScuolaCarloGiorda",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "ScuolaCarloGiorda/wwwroot",
       "Source": "ScuolaCarloGiorda",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/bundle/ScuolaCarloGiorda.styles.css",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/bundle/ScuolaCarloGiorda.styles.css",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Computed",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/bundle/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/bundle/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "ScuolaCarloGiorda.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/bundle/ScuolaCarloGiorda.styles.css"
+      "OriginalItemSpec": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/bundle/ScuolaCarloGiorda.styles.css"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/projectbundle/ScuolaCarloGiorda.bundle.scp.css",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/projectbundle/ScuolaCarloGiorda.bundle.scp.css",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Computed",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/projectbundle/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/projectbundle/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "ScuolaCarloGiorda.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/projectbundle/ScuolaCarloGiorda.bundle.scp.css"
+      "OriginalItemSpec": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/obj/Debug/net6.0/scopedcss/projectbundle/ScuolaCarloGiorda.bundle.scp.css"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/bootstrap/bootstrap.min.css",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/bootstrap/bootstrap.min.css",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot/css/bootstrap/bootstrap.min.css"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/bootstrap/bootstrap.min.css.map",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/bootstrap/bootstrap.min.css.map",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot/css/bootstrap/bootstrap.min.css.map"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/FONT-LICENSE",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/FONT-LICENSE",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/FONT-LICENSE"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.eot",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.eot",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.eot"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.otf",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.otf",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.otf"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.svg",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.svg",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.svg"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.ttf",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.ttf",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.ttf"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.woff",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/font/fonts/open-iconic.woff",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.woff"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/ICON-LICENSE",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/ICON-LICENSE",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/ICON-LICENSE"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/README.md",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/open-iconic/README.md",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/README.md"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/site.css",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/css/site.css",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot/css/site.css"
     },
     {
-      "Identity": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/favicon.ico",
+      "Identity": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/favicon.ico",
       "SourceId": "ScuolaCarloGiorda",
       "SourceType": "Discovered",
-      "ContentRoot": "/progetti/personali/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
+      "ContentRoot": "/progetti/personale/scuolacarlogiorda/ScuolaCarloGiorda/ScuolaCarloGiorda/wwwroot/",
       "BasePath": "_content/ScuolaCarloGiorda",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
