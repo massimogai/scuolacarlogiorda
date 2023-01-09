@@ -1,4 +1,5 @@
 @typeparam TColumn
+@using System.Data.SqlClient
 @typeparam TRow
 
 <table>
@@ -13,34 +14,57 @@
     @foreach (var row in Rows)
     {
         <tr>
-        <td>@RowProperty.Invoke(row)</td>
-        @foreach (var column in Columns)
-        {
-            <td>
-                <InputText @bind-Value="Data[new Tuple<TRow, TColumn>(row,column)]"></InputText>
-            </td>
-        }
-    </tr>
+            <td>@RowProperty.Invoke(row)</td>
+            @foreach (var column in Columns)
+            {
+                string data = "";
+                
+                bool presence =GetData.Invoke(row,column);
+                if (presence)
+                {
+                    data = "x";
+                }
+                <td>
+        <input type="text" value="@data" @onchange="args => OnChangeValueEventHandler(args,row,column) "/>
+                </td>
+            }
+        </tr>
     }
     </tbody>
 </table>
 
 @code
 {
-    [Parameter]
-    public Dictionary<Tuple<TRow, TColumn>, string> Data { get; set; }
+    
+
     [Parameter]
     public List<TRow> Rows { get; set; }
+
     [Parameter]
     public List<TColumn> Columns { get; set; }
+
     [Parameter]
     public Func<TColumn, string> ColumnProperty { get; set; }
+
     [Parameter]
     public Func<TRow, string> RowProperty { get; set; }
-     
+    
+    [Parameter]
+    public Func<TRow,TColumn, bool> GetData { get; set; }
+    [Parameter]
+    public  Func<  TRow  , TColumn ,  bool,bool > SetData { get; set; }
+
 
     protected override void OnInitialized()
     {
     }
- 
+
+    private void OnChangeValueEventHandler(ChangeEventArgs args, TRow row, TColumn column)
+    {
+        string value = (string) args.Value;
+        bool presence = (value == "x" || value == "X");
+      SetData.Invoke(row,column,presence);
+        
+     
+    }
 }

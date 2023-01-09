@@ -10,12 +10,14 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
 
-
 builder.Services.AddSingleton<SchoolDbContext>();
 builder.Services.AddSingleton<CorsiService>();
 builder.Services.AddSingleton<IstruttoriService>();
 builder.Services.AddSingleton<AllieviService>();
 builder.Services.AddSingleton<UsciteService>();
+
+
+builder.Services.AddScoped<SessionDataHolder>();
 
 
 

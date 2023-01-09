@@ -4,7 +4,7 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-body">
-                @foreach (var item in _notSelectedResult.result)
+                @foreach (var item in _noSelected)
                 {
                     <li @onclick="@(() => Select(item))">@LabelProperty.Invoke(item)</li>
                 }
@@ -72,7 +72,9 @@
     public List<TItem> Value { get; set; }
 
     [Parameter]
-    public EventCallback<List<TItem>> ValueChanged { get; set; }
+    public EventCallback<TItem> ValueAdded { get; set; }
+    [Parameter]
+    public EventCallback<TItem> ValueRemoved { get; set; }
 
     private string _removeAllText = "<<";
 
@@ -117,8 +119,9 @@
         _selected.Add(item);
 
         Value.Add(item);
-        await ValueChanged.InvokeAsync(Value);
+        await ValueAdded.InvokeAsync(item);
         NotSelectedSelectPage(_notSelectedResult.index);
+      
     }
 
     private async Task Deselect(TItem item)
@@ -127,26 +130,36 @@
         _noSelected.Add(item);
 
         Value.Remove((item));
-        await ValueChanged.InvokeAsync(Value);
+        await ValueRemoved.InvokeAsync(item);
         NotSelectedSelectPage(_notSelectedResult.index);
+    
     }
 
-    private async Task SelectAll()
+    private void  SelectAll()
     {
         _selected.AddRange(_noSelected);
-        _noSelected.ForEach(item => Value.Add((item)));
-        await ValueChanged.InvokeAsync(Value);
+        _noSelected.ForEach(item =>
+        {
+            Value.Add((item));
+             ValueAdded.InvokeAsync(item);
+        });
+        
         _noSelected.Clear();
         LoadData(0);
         EvaluatePagesLimit();
     }
 
-    private async Task DeselectAll()
+    private  void  DeselectAll()
     {
         _noSelected.AddRange(_selected);
         _selected.Clear();
+        _selected.ForEach(item =>
+        {
+            
+            ValueRemoved.InvokeAsync(item);
+        });
         Value.Clear();
-        await ValueChanged.InvokeAsync(Value);
+       
         LoadData(0);
         EvaluatePagesLimit();
     }

@@ -1,0 +1,52 @@
+@using ScuolaCarloGiorda.Models
+@using ScuolaCarloGiorda.Services
+@inject GiudizioAR1Crud _ar1Crud
+
+<EditForm Model="@Giudizio" OnValidSubmit="@(SaveForm)">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="modal" role="dialog" style="display:block; overflow: auto" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Anagrafica Istruttore</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <InputText class="form-control" @bind-Value="Giudizio.Data"/>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary fas fa-save" data-dismiss="modal">Salva</button>
+                    <button type="button" @onclick="@(CloseForm)" class="btn btn-primary fas fa-close" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+@code
+{
+    [Parameter]
+    public Corso Corso { get; set; }
+
+    [Parameter]
+    public Allievo Allievo { get; set; }
+    [Parameter]
+    public Action Close { get; set; }
+    [Parameter]
+    public GiudizioAR1 Giudizio { get; set; }
+
+    private void CloseForm()
+    {
+        _ar1Crud.DiscardChanges(Giudizio);
+        Close?.Invoke();
+    }
+
+    private void SaveForm()
+    {
+        _ar1Crud.Save();
+        Close?.Invoke();
+    }
+}

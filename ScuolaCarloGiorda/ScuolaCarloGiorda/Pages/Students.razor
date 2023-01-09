@@ -1,0 +1,66 @@
+@page "/students"
+@using ScuolaCarloGiorda.Models
+@using ScuolaCarloGiorda.Services
+@inject AllieviService _allieviService
+
+
+<div class="row mt-5">
+    <h3>Elenco Allievi</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Mail</th>
+            <th>Codice Fiscale</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Allievo allievo in _students)
+        {
+            <tr>
+                <td>@allievo.Nome</td>
+                <td>@allievo.Cognome</td>
+                <td>@allievo.Mail</td>
+                <td>@allievo.Cf</td>
+                <td>
+                    <button class="btn btn-primary  oi oi-pencil" @onclick="@(() => Edit(allievo))"></button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+@if (_showEditForm)
+{
+    <EditAllievoPopup Close="CloseEditForm" Allievo="_selectedStuent" Save="SaveEditForm"></EditAllievoPopup>
+}
+@code{
+    private List<Allievo> _students;
+    private bool _showEditForm;
+    private Allievo _selectedStuent;
+
+    protected override void OnInitialized()
+    {
+        _students = _allieviService.ListAllievi();
+    }
+   
+    private void Edit(Allievo istruttore)
+    {
+        _showEditForm = true;
+        _selectedStuent = istruttore;
+    }
+    private void CloseEditForm()
+    {
+        _showEditForm = false;
+        _allieviService.DiscardChanges(_selectedStuent);
+        StateHasChanged();
+    }
+    private void SaveEditForm()
+    {
+        _showEditForm = false;
+        _allieviService.Save();
+        StateHasChanged();
+    }
+}

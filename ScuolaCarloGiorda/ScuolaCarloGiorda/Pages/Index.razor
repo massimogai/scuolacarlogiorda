@@ -2,14 +2,16 @@
 @using ScuolaCarloGiorda.Models
 @using ScuolaCarloGiorda.Services
 @inject CorsiService _corsiService
+@inject SessionDataHolder _sessionDataHolder
+@inject NavigationManager _navManager
+
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Scuola Carlo Giorda.</h1>
 
-Welcome to your new app.
-<button class="btn btn-primary" @onclick="@ShowAddCorsoForm">Crea Corso</button>
-<table>
+<table class="table table-bordered">
     <thead>
+    <tr><th><button class="btn btn-primary oi oi-plus " @onclick="@ShowAddCorsoForm" title="Crea Corso"></button></th></tr>
     <tr>
         <th>Nome</th>
     </tr>
@@ -19,52 +21,49 @@ Welcome to your new app.
     {
         <tr>
             <td>@corso.Name</td>
-            <td><button class="btn btn-primary oi-plus" @onclick="@(()=>SelectCorso(corso))"></button></td>
+            <td>
+                <button class="btn btn-primary oi oi-pencil" @onclick="@(() => SelectCorso(corso))" title="Modifica Corso"></button>
+                <button class="btn btn-primary oi oi-delete" @onclick="@(() => DeleteCorso(corso))" title="Elimina Corso"></button>
+                <button class="btn btn-primary oi oi-check" @onclick="@(() => CloseCorso(corso))" title="Chiudi Corso"></button>
+            </td>
         </tr>
     }
     </tbody>
 </table>
-@if (_selectedCorso != null)
-{
-    
-    <EditCorsoPopup Corso="@_selectedCorso" Save="@OnSave" Close="@OnCancel"></EditCorsoPopup>
-  
-}
+
 @code
 {
     List<Corso>? _corsi;
-    Corso? _selectedCorso;
-    
+
+
     protected override void OnInitialized()
     {
-      
-        _corsi=_corsiService.ListCorsi();
+        _corsi = _corsiService.ListCorsi();
     }
 
     private void ShowAddCorsoForm()
     {
-      
         Corso corso = new Corso
         {
             Name = "TEST_" + DateTime.Now
         };
-        _selectedCorso = corso;
-        
+
+        _sessionDataHolder.Corso = corso;
     }
 
     private void SelectCorso(Corso corso)
     {
-        _selectedCorso = corso;
+        _sessionDataHolder.Corso = corso;
+        _navManager.NavigateTo("/corso");
     }
-    private void OnSave()
+
+    private void DeleteCorso(Corso corso)
     {
-        _selectedCorso = null;
-        _corsi=_corsiService.ListCorsi();
-        StateHasChanged();
+        throw new NotImplementedException();
     }
-    private void OnCancel()
+
+    private void CloseCorso(Corso corso)
     {
-        _selectedCorso = null;
-        StateHasChanged();
+        throw new NotImplementedException();
     }
 }

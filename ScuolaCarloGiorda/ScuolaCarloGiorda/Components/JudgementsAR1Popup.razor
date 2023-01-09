@@ -1,0 +1,54 @@
+@using ScuolaCarloGiorda.Models
+
+ <button type="button" class="btn btn-primary oi  oi-plus" @onclick="@(OpenStudentNewJudgementPopup)"></button>
+<table>
+    <thead>
+    <th>Data</th>
+    </thead>
+    <tbody>
+    @foreach (GiudizioAR1 giudizio in _giudizi)
+    {
+        <tr>
+            <td>@giudizio.Data</td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (_showJudgementPopup)
+{
+    <JudgementAR1Popup Corso="Corso" Allievo="Allievo" Close="CloseStudentJudgementPopup"></JudgementAR1Popup>
+}
+
+@code
+{
+    [Parameter]
+    public Corso Corso { get; set; }
+
+    [Parameter]
+    public Allievo Allievo { get; set; }
+
+    [Parameter]
+    public Action Close { get; set; }
+
+    private Giudizio _currentJudgement;
+
+    protected override void OnInitialized()
+    {
+        _giudizi = (IEnumerable<GiudizioAR1>) Allievo.Giudizi.Where(giudizio => giudizio.Uscita.Corso == Corso);
+    }
+
+    private IEnumerable<GiudizioAR1> _giudizi;
+    private bool _showJudgementPopup;
+
+    private void OpenStudentNewJudgementPopup()
+    {
+        _currentJudgement = new Giudizio();
+        _showJudgementPopup = true;
+    }
+    
+    private void CloseStudentJudgementPopup()
+    {
+        _currentJudgement = null;
+        _showJudgementPopup = false;
+    }
+}

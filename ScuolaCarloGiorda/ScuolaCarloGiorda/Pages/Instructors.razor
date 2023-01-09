@@ -2,22 +2,50 @@
 @using ScuolaCarloGiorda.Models
 @using ScuolaCarloGiorda.Services
 @inject IstruttoriService _istruttoriService
-<InputFile OnChange="@LoadFiles" multiple/>
-<table>
-    <thead>
-    <th>Nome</th>
-    </thead>
-    <tbody>
-    @foreach (Istruttore istruttore in _instructors)
-    {
-        <tr>
-            <td>@istruttore.Nome</td>
-        </tr>
-    }
-    </tbody>
-</table>
 
+<div class="row">
+    <div class="form-group">
+        <label for="input">Carica da File</label>
+        <InputFile id="input" class="form-control" OnChange="@LoadFiles" multiple ButtonText="Start" accept=".csv"></InputFile>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <h3>Elenco istruttori</h3>
+    <table class="table table-bordered">
+        <thead>
+       
+        
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Mail</th>
+            <th>Codice Fiscale</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Istruttore istruttore in _instructors)
+        {
+            <tr>
+                <td>@istruttore.Nome</td>
+                <td>@istruttore.Cognome</td>
+                <td>@istruttore.Mail</td>
+                <td>@istruttore.Cf</td>
+                <td><button class="btn btn-primary oi oi-pencil" @onclick="@(()=>Edit(istruttore))"></button></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+@if (_showEditForm)
+{
+    <EditIstruttorePopup Close="CloseEditForm" Istruttore="_selectedInstructor" Save="SaveEditForm"></EditIstruttorePopup>
+}
 @code{
+    private List<Istruttore> _instructors;
+    private bool _showEditForm;
+    private Istruttore _selectedInstructor;
 
     protected override void OnInitialized()
     {
@@ -31,7 +59,7 @@
             try
             {
                 Stream stream = file.OpenReadStream();
-               await _istruttoriService.LoadFromStream(stream);
+                await _istruttoriService.LoadFromStream(stream);
             }
             catch (Exception ex)
             {
@@ -41,5 +69,24 @@
         _instructors = _istruttoriService.ListIstruttori();
     }
 
-    private List<Istruttore> _instructors;
+   
+
+    private void Edit(Istruttore istruttore)
+    {
+        _showEditForm = true;
+        _selectedInstructor = istruttore;
+    }
+    private void CloseEditForm()
+    {
+        _showEditForm = false;
+     _istruttoriService.DiscardChanges(_selectedInstructor);
+        StateHasChanged();
+    }
+    private void SaveEditForm()
+    {
+        _showEditForm = false;
+        _istruttoriService.Save();
+        StateHasChanged();
+    }
+
 }

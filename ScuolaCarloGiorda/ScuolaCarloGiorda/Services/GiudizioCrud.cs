@@ -12,4 +12,9 @@ public abstract class GiudizioCrud<T> where T:Giudizio
 
     public abstract List<T> ListGiudizi(Allievo allievo);
 
+    public abstract void DiscardChanges(T giudizio);
+    public abstract void Save();
+    
+
+
 }

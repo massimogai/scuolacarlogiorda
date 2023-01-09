@@ -1,0 +1,410 @@
+@page "/corso"
+@using System.ComponentModel.DataAnnotations
+@using ScuolaCarloGiorda.Models
+@using ScuolaCarloGiorda.Services
+@inject CorsiService _corsiService
+@inject AllieviService _allieviService
+@inject IstruttoriService _istruttoriService
+@inject SessionDataHolder _holder
+@inject NavigationManager _navManager
+
+@implements IDisposable
+<EditForm Model="@Corso" OnValidSubmit="@(SaveForm)">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="@_cssGeneral" @onclick="@(ShowGeneral)">Generale</a>
+        </li>
+        <li class="nav-item">
+            <a class="@_cssInstructors" @onclick="@(ShowInstructors)">Istruttori</a>
+        </li>
+        <li class="nav-item">
+            <a class="@_cssStudents" @onclick="@(ShowStudents)">Allievi</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="@_cssTrips" @onclick="@(ShowTrips)">Uscite</a>
+        </li>
+        <li class="nav-item">
+            <a class="@_cssInstructorsPresence" @onclick="@(ShowInstructorPresence)">Presenza Istruttori</a>
+        </li>
+        <li class="nav-item">
+            <a class="@_cssStudentsPresence" @onclick="@(ShowStudentsPresence)">Presenza Allievi</a>
+        </li>
+        <li class="nav-item">
+            <a class="@_cssStudentsJudgement" @onclick="@(ShowStudentsJudgement)">Giudizi Allievi</a>
+        </li>
+
+
+    </ul>
+    @if (_showGeneral)
+    {
+        <div class="form-group">
+            <label>Nome:</label>
+            <InputText class="form-control" @bind-Value="Corso.Name"/>
+        </div>
+        <div class="form-group">
+            <label>>Tipo Corso:</label>
+            <InputSelect class="form-control" @bind-Value="Corso.TipoCorso">
+                <option value="@TipoCorso.A1">A1</option>
+                <option value="@TipoCorso.AL1">AL1</option>
+                <option value="@TipoCorso.AR1">AR1</option>
+                <option value="@TipoCorso.SA1">SA1</option>
+                <option value="@TipoCorso.SA2">SA2</option>
+            </InputSelect>
+        </div>
+    }
+    @if (_showInstructors)
+    {
+        <ListSelector TItem="Istruttore" LabelProperty="istruttore => istruttore.Nome" Items="@_instructors" Value="Corso.Istruttori" ValueRemoved="OnInstructorsRemoved" ValueAdded="OnInstructorsAdded"></ListSelector>
+    }
+    @if (_showStudents)
+    {
+        <InputFile OnChange="@LoadFiles" multiple/>
+        <ListSelector TItem="Allievo" LabelProperty="allievo => allievo.Nome" Items="@_students" Value="Corso.Allievi" ValueRemoved="OnStudentsRemoved" ValueAdded="OnStudentsAdded"></ListSelector>
+    }
+    @if (_showTrips)
+    {
+        <button type="button" class="btn btn-primary" @onclick="@(() => OpenTripPopup(null))">Crea Uscita</button>
+        <table>
+            <thead>
+            <th>Data</th>
+            <th>Luogo</th>
+            </thead>
+            <tbody>
+            @foreach (Uscita uscita in Corso.Uscite)
+            {
+                <tr>
+                    <td>@uscita.Data</td>
+                    <td>@uscita.Luogo</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    @if (_showInstructorsPresence)
+    {
+        <DataGrid GetData="IsInstructorPresent" SetData="SetInstructorPresence" TRow="Istruttore" TColumn="Uscita" Columns="Corso.Uscite" Rows="Corso.Istruttori" ColumnProperty="uscita => uscita.Luogo" RowProperty="istruttore => istruttore.Nome"></DataGrid>
+    }
+    @if (_showStudentsPresence)
+    {
+        <DataGrid GetData="IsStudentPresent" SetData="SetStudentPresence" TRow="Allievo" TColumn="Uscita" Columns="Corso.Uscite" Rows="Corso.Allievi" ColumnProperty="uscita => uscita.Luogo" RowProperty="allievo => allievo.Nome"></DataGrid>
+    }
+
+    @if (_showStudentsJudgement)
+    {
+        <table>
+            <thead>
+            <th>Data</th>
+            <th>Luogo</th>
+            </thead>
+            <tbody>
+            @foreach (Allievo allievo in Corso.Allievi)
+            {
+                <tr>
+                    <td>@allievo.Nome</td>
+                    <td>@allievo.Cognome</td>
+                    <button type="button" class="btn btn-primary oi  oi-pencil" @onclick="@(() => OpenStudentJudgementsPopup(allievo))"></button>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    <button type="submit" class="btn btn-primary fas fa-save" data-dismiss="modal">Salva</button>
+
+</EditForm>
+
+@if (_tripPopupVisible)
+{
+    <EditUscitePopup Uscita="_currentTrip" Close="CloseTripPopup" Save="SaveTrip"></EditUscitePopup>
+}
+@if (_showStudentJudgments)
+{
+    if (Corso.TipoCorso == TipoCorso.AR1)
+    {
+        <JudgementsAR1Popup Corso="Corso" Allievo="_selectedStudent" Close="CloseJudgementsPopup"></JudgementsAR1Popup>
+    }
+}
+
+@code
+{
+
+
+    private Corso Corso;
+
+
+    private bool _showGeneral;
+    private bool _showInstructors;
+    private bool _showStudents;
+    private bool _showTrips;
+    private bool _showInstructorsPresence;
+    private bool _showStudentsPresence;
+    private bool _showStudentsJudgement;
+
+    private string _cssGeneral;
+    private string _cssInstructors;
+    private string _cssStudents;
+    private string _cssTrips;
+    private string _cssInstructorsPresence;
+    private string _cssStudentsPresence;
+    private string _cssStudentsJudgement;
+
+    private List<Allievo> _students;
+    private List<Istruttore> _instructors;
+    private List<Istruttore> _selectedInstructors;
+    private Uscita _currentTrip;
+    private bool _tripPopupVisible = false;
+    private bool _showStudentJudgments;
+    private Allievo _selectedStudent;
+
+    protected override void OnInitialized()
+    {
+        Corso = _holder.Corso;
+        if (Corso == null)
+        {
+            _navManager.NavigateTo("/");
+        }
+        _instructors = _istruttoriService.ListIstruttori();
+        _students = _allieviService.ListAllievi();
+        ResetFlagsAndCss();
+        ShowGeneral();
+    }
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        foreach (IBrowserFile file in e.GetMultipleFiles(1))
+        {
+            try
+            {
+                Stream stream = file.OpenReadStream();
+                await _allieviService.LoadFromStream(stream, Corso);
+                _students = _allieviService.ListAllievi();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+
+
+    private void SaveForm()
+    {
+        _corsiService.AddOrUpdate(Corso);
+    }
+
+    private void ResetFlagsAndCss()
+    {
+        _showGeneral = false;
+        _showInstructors = false;
+        _showStudents = false;
+        _showTrips = false;
+        _showInstructorsPresence = false;
+        _showStudentsPresence = false;
+
+        _cssGeneral = "nav-link";
+        _cssInstructors = "nav-link";
+        _cssStudents = "nav-link";
+        _cssTrips = "nav-link";
+        _cssInstructorsPresence = "nav-link";
+        _cssStudentsPresence = "nav-link";
+    }
+
+    private void ShowGeneral()
+    {
+        ResetFlagsAndCss();
+
+        _showGeneral = true;
+        _cssGeneral = "nav-link active";
+    }
+
+    private void ShowInstructors()
+    {
+        ResetFlagsAndCss();
+
+        _showInstructors = true;
+        _cssInstructors = "nav-link active";
+    }
+
+    private void ShowStudents()
+    {
+        ResetFlagsAndCss();
+
+        _showStudents = true;
+        _cssStudents = "nav-link active";
+    }
+
+    private void ShowTrips()
+    {
+        ResetFlagsAndCss();
+
+        _showTrips = true;
+        _cssTrips = "nav-link active";
+    }
+
+
+    private void ShowInstructorPresence()
+    {
+        ResetFlagsAndCss();
+
+        _showInstructorsPresence = true;
+        _cssInstructorsPresence = "nav-link active";
+    }
+
+    private void ShowStudentsPresence()
+    {
+        ResetFlagsAndCss();
+
+        _showStudentsPresence = true;
+        _cssStudentsPresence = "nav-link active";
+    }
+
+    private void ShowStudentsJudgement()
+    {
+        ResetFlagsAndCss();
+        _showStudentsJudgement = true;
+        _cssStudentsJudgement = "nav-link active";
+    }
+
+    private void OpenTripPopup(Uscita? o)
+    {
+        if (o == null)
+        {
+            o = new Uscita();
+            o.Corso = Corso;
+            Corso.Uscite.Add(o);
+        }
+        _currentTrip = o;
+        _tripPopupVisible = true;
+    }
+
+    private void CloseTripPopup()
+    {
+        _currentTrip = null;
+        _tripPopupVisible = false;
+        StateHasChanged();
+    }
+
+    private void SaveTrip()
+    {
+        CloseTripPopup();
+    }
+
+    private void OnInstructorsRemoved(Istruttore obj)
+    {
+        obj.Corsi.Remove(Corso);
+    }
+
+    private void OnInstructorsAdded(Istruttore obj)
+    {
+        obj.Corsi.Add(Corso);
+    }
+
+
+    private void OnStudentsRemoved(Allievo obj)
+    {
+        obj.Corsi.Remove(Corso);
+    }
+
+    private void OnStudentsAdded(Allievo obj)
+    {
+        obj.Corsi.Add(Corso);
+    }
+
+    private PresenzaIstruttori GetInstructorPresence(Istruttore arg1, Uscita arg2)
+    {
+        var result = Corso.PresenzeIstruttori.Where(presenzaIstruttori => (presenzaIstruttori.Corso == Corso) && (presenzaIstruttori.Istruttore == arg1) && (presenzaIstruttori.Uscita == arg2));
+        var presence = result.SingleOrDefault();
+        return presence;
+    }
+
+    private bool IsInstructorPresent(Istruttore arg1, Uscita arg2)
+    {
+        var presence = GetInstructorPresence(arg1, arg2);
+        bool isPresent = presence != null;
+        return isPresent;
+    }
+
+    private PresenzaAllievi GetStudentPresence(Allievo arg1, Uscita arg2)
+    {
+        var result = Corso.PresenzeAllievi.Where(presenzaAllievo => (presenzaAllievo.Corso == Corso) && (presenzaAllievo.Allievo == arg1) && (presenzaAllievo.Uscita == arg2));
+        var presence = result.SingleOrDefault();
+        return presence;
+    }
+
+    private bool IsStudentPresent(Allievo arg1, Uscita arg2)
+    {
+        var presence = GetStudentPresence(arg1, arg2);
+        bool isPresent = presence != null;
+        return isPresent;
+    }
+
+    private bool SetInstructorPresence(Istruttore arg1, Uscita arg2, bool isPresent)
+    {
+        bool isNowPresent = IsInstructorPresent(arg1, arg2);
+        if (isNowPresent != isPresent)
+        {
+            if (isPresent)
+            {
+                PresenzaIstruttori presenzaIstruttori = new PresenzaIstruttori();
+                presenzaIstruttori.Corso = Corso;
+                presenzaIstruttori.Istruttore = arg1;
+                presenzaIstruttori.Uscita = arg2;
+                Corso.PresenzeIstruttori.Add(presenzaIstruttori);
+            }
+            else
+            {
+                var presence = GetInstructorPresence(arg1, arg2);
+                Corso.PresenzeIstruttori.Remove(presence);
+            }
+            _corsiService.AddOrUpdate(Corso);
+        }
+        return true;
+    }
+
+    private bool SetStudentPresence(Allievo arg1, Uscita arg2, bool isPresent)
+    {
+        bool isNowPresent = IsStudentPresent(arg1, arg2);
+        if (isNowPresent != isPresent)
+        {
+            if (isPresent)
+            {
+                PresenzaAllievi presenzaAllievi = new PresenzaAllievi();
+                presenzaAllievi.Corso = Corso;
+                presenzaAllievi.Allievo = arg1;
+                presenzaAllievi.Uscita = arg2;
+                Corso.PresenzeAllievi.Add(presenzaAllievi);
+            }
+            else
+            {
+                var presence = GetStudentPresence(arg1, arg2);
+                Corso.PresenzeAllievi.Remove(presence);
+            }
+            _corsiService.AddOrUpdate(Corso);
+        }
+        return true;
+    }
+
+    public void Dispose()
+    {
+        if (Corso != null)
+        {
+            _corsiService.DiscardChanges(Corso);
+        }
+    }
+
+
+    private void OpenStudentJudgementsPopup(Allievo allievo)
+    {
+        _selectedStudent = allievo;
+        _showStudentJudgments = true;
+    }
+
+    private void CloseJudgementsPopup()
+    {
+        _selectedStudent = null;
+        _showStudentJudgments = false;
+    }
+}

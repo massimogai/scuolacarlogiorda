@@ -18,14 +18,19 @@ public class AllieviService
             .ToList();
         return corsi;
     }
+    public void DiscardChanges(Allievo allievo)
+    {
+        _schoolDbContext.Entry(allievo).Reload();
+    }
 
-    public void AddOrUpdateAllievo(Allievo allievo)
+    public void AddOrUpdateAllievo(Allievo allievo, Corso corso)
     {
         
         var cursor = _schoolDbContext.Allievi.Where(allievo1 => allievo1.Cf == allievo.Cf);
         int num = cursor.Count();
         if (num == 0)
         {
+            allievo.Corsi.Add(corso);
             _schoolDbContext.Allievi.Add(allievo);
         }
         else
@@ -34,8 +39,13 @@ public class AllieviService
             allievoDb.Nome = allievo.Nome;
             allievoDb.Cognome = allievo.Cognome;
             allievoDb.Mail = allievo.Mail;
-          
+            if (!allievoDb.Corsi.Contains(corso))
+            {
+                allievoDb.Corsi.Add(corso);
+            }
+
         }
+      
         _schoolDbContext.SaveChanges();
         }
 
@@ -49,7 +59,7 @@ public class AllieviService
         _schoolDbContext.SaveChanges();
     }
 
-    public async Task<List<Allievo>> LoadFromStream(Stream stream)
+    public async Task<List<Allievo>> LoadFromStream(Stream stream, Corso corso)
     {
         Dictionary<string, int> _columnsLabDictionary = new();
 
@@ -80,9 +90,11 @@ public class AllieviService
                     Nome = nome,
                     Cognome = cognome,
                     Cf = cf,
-                    Mail = mail
+                    Mail = mail,
+                   
                 };
-                this.AddOrUpdateAllievo(allievo);
+                
+                this.AddOrUpdateAllievo(allievo,corso);
             }
         }
 

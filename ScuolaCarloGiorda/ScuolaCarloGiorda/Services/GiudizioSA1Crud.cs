@@ -9,6 +9,16 @@ public class GiudizioSA1Crud:GiudizioCrud<GiudizioSA1>
         throw new NotImplementedException();
     }
 
+    public override void DiscardChanges(GiudizioSA1 giudizio)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Save()
+    {
+        throw new NotImplementedException();
+    }
+
     public GiudizioSA1Crud(SchoolDbContext schoolDbContext) : base(schoolDbContext)
     {
     }
